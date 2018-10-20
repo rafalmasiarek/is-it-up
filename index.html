@@ -1,4 +1,4 @@
-<!doctype HTML>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Is It Up?</title>
@@ -13,140 +13,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script>
-        var onloadCallback = function() {
-          grecaptcha.render('SubmitEmail', {
-            'sitekey' : '6Ldt2kAUAAAAALQ011rPiQFr_yxM3DLVJvOR2zq0',
-            'callback' : onSubmit
-          });
-        };
-	var onSubmit = function(token){
-		var domain = $("#targetAddress").val();
-		var email = $("#targetEmail").val();
-
-		$.ajax({
-			type: "POST",
-			url: "subscribe.php",
-			data: {
-				domain: domain,
-				email: email,
-				captcha: grecaptcha.getResponse()
-			},
-			success: function(result){
-				$('.modal-body').delay(1000).empty();
-				$('.modal-body').html('<h4>Hurra!</h4> <p>Strona zostala dodana!</p>');
-			},
-			error: function(result){
-				alert(result);
-			}
-		});
-		event.preventDefault();
-	};
-</script>
-
-	<script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'></script>
-
 	<link type="text/css" rel="stylesheet" href="assets/css/main.css" />
 
 	<script src="assets/scripts/TweenLite.min.js"></script>
 	<script src="assets/scripts/main.js"></script>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<style type="text/css">
-	.modal-monitoring {
-		color: #999;
-		font-size: 15px;
-		font-family: 'Varela Round', sans-serif;
-	}
-	.modal-monitoring .modal-content {
-		padding: 40px;
-		border-radius: 0;
-		border: none;
-	}
-	.modal-monitoring .modal-header {
-		border-bottom: none;
-        position: relative;
-		text-align: center;
-		border-radius: 5px 5px 0 0;
-	}
-	.modal-monitoring h4 {
-		color: #000;
-		text-align: center;
-		font-size: 30px;
-		margin: 0 0 25px;
-		font-weight: bold;
-		font-family: 'Press Start 2P', cursive;
-	}
-	.modal-monitoring .close {
-		background: #c0c3c8;
-		position: absolute;
-		top: -15px;
-		right: -15px;
-		color: #fff;
-		text-shadow: none;
-		opacity: 0.5;
-		width: 22px;
-		height: 22px;
-		border-radius: 20px;
-		font-size: 16px;
-	}
-	.modal-monitoring .close span {
-		position: relative;
-		top: -1px;
-	}
-	.modal-monitoring .close:hover {
-		opacity: 0.8;
-	}
-	.modal-monitoring .icon-box {
-		color: #7265ea;
-		display: inline-block;
-		z-index: 9;
-		text-align: center;
-		position: relative;
-		margin-bottom: 10px;
-	}
-	.modal-monitoring .icon-box i {
-		font-size: 110px;
-	}
-	.modal-monitoring .form-control, .modal-monitoring .btn {
-		min-height: 46px;
-		border-radius: 3px;
-	}
-	.modal-monitoring .form-control {
-		box-shadow: none;
-		border-color: #dbdbdb;
-	}
-	.modal-monitoring .form-control:focus {
-		border-color: #7265ea;
-		box-shadow: 0 0 8px rgba(114, 101, 234, 0.5);
-	}
-    .modal-monitoring .btn {
-        color: #fff;
-        border-radius: 4px;
-		background: #7265ea;
-		text-decoration: none;
-		transition: all 0.4s;
-        line-height: normal;
-		padding: 6px 20px;
-		min-width: 150px;
-        border: none;
-    }
-	.modal-monitoring .btn:hover, .modal-monitoring .btn:focus {
-		background: #4e3de4;
-		outline: none;
-	}
-	.modal-monitoring .input-group {
-		margin: 30px 0 15px;
-	}
-	.hint-text {
-		margin: 100px auto;
-		text-align: center;
-	}
-    .grecaptcha-badge{
-        display:none;
-    }
-</style>
-
 
 </head>
 <body>
@@ -160,7 +32,8 @@
 				<canvas id="barAnimationCanvas">
 
 				</canvas>
-				<input type="text" name="" id="targetAddress" placeholder="http://" autocomplete="off" spellcheck="false"><input type="submit" id="checkButton" value="Go">
+				<input type="text" name="" id="targetAddress" placeholder="https://" 
+autocomplete="off" spellcheck="false"><input type="submit" id="checkButton" value="Go">
 			</form>
 			<div id="result">
 				<div id="resultDead">
@@ -175,37 +48,11 @@
 		</section>
 	</div>
 
-		<footer>
+		<!--footer>
 			<p>Czy nie potrzebujesz pomocy? <a href="https://masiarek.pl">Rafal Masiarek</a></p>
-		</footer>
+		</footer-->
 
 	<img id="megaman" src="assets/img/megaman.gif">
 
-<div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-monitoring">
-		<div class="modal-content">
-			<form action="#" method="post">
-				<div class="modal-header">
-					<div class="icon-box">
-						<i class="fa fa-envelope-open-o"></i>
-					</div>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
-				</div>
-				<div class="modal-body text-center">
-					<h4>Dodaj strone do darmowego monitoringu!</h4>
-					<p>W przypadku awarii otrzymasz informacje na podany adres email, za darmo!</p>
-					<div class="input-group">
-						<input type="email" id="targetEmail" class="form-control" placeholder="Podaj adres email" required>
-
-						<span class="input-group-btn">
-							<input id="SubmitEmail" type="submit" class="btn btn-primary" value="Dodaj">
-						</span>
-					</div>
-				</div>
-
-			</form>
-		</div>
-	</div>
-</div>
 </body>
 </html>

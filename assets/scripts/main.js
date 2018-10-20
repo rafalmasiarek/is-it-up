@@ -18,7 +18,6 @@ $(document).ready(function() {
 		if (isWorking) {
 			return false;
 		}
-
 		ResultInicator.hide();
 
 		Megaman.start();
@@ -39,25 +38,17 @@ $(document).ready(function() {
 		$("#targetAddress")
 			.removeAttr("readonly")
 			.removeClass("loading");
-		
 		$("#barAnimationCanvas").hide();
 
 		if (response.status === true) {
 			Megaman.runToFinish();
 			ResultInicator.alive();
-			
 		} else {
 			Megaman.kill();
 			ResultInicator.dead();
-			
 		}
 
 	};
-
-
-
-
-
 
 	var requestSuccess = function(data) {
 		onCheckEnd($.parseJSON(data));
@@ -71,7 +62,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "backend.php",
+			url: "https://masiarekguru-backend.herokuapp.com/v1/is-it-up/check",
 			data: {
 				url: url
 			},
@@ -133,11 +124,6 @@ $(document).ready(function() {
 
 		}
 	};
-
-
-
-
-
 
 	//CANVAS
 
